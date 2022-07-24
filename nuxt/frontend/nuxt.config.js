@@ -24,7 +24,11 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/style-resources", "@nuxtjs/axios"],
+  modules: [
+    "@nuxtjs/style-resources",
+    "@nuxtjs/axios",
+    ["cookie-universal-nuxt", { alias: "cookiz" }],
+  ],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["assets/scss/main.scss"],
@@ -36,6 +40,10 @@ export default {
       "assets/scss/abstracts/_mixins.scss",
     ],
   },
+
+  //  To make it work for SSR, remember to set `ssr: true` and `target: 'server'`
+  ssr: true,
+  target: "server",
 
   axios: {
     // https://axios.nuxtjs.org/options/

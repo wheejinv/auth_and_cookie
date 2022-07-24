@@ -19,6 +19,10 @@
 </template>
 
 <script>
+import axios from 'axios'
+
+// https://www.inflearn.com/questions/345000
+
 export default {
   data() {
     return {
@@ -33,9 +37,11 @@ export default {
         password: this.password
       }
 
-      const response = await this.$axios.$post('/login', json)
+      const response = await axios.post("http://localhost:3001/login", json, {
+        withCredentials: true,
+      });
 
-      if (response.result === true) {
+      if (response.data.result === true) {
         this.$store.commit("setLogin", true)
       }
     }

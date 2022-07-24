@@ -20,7 +20,13 @@ export default {
     }
   },
   methods: {
+    eraseCookie(name) {
+      document.cookie = name + "=; Max-Age=0";
+    },
     logout() {
+      this.eraseCookie('id');
+      this.eraseCookie('password');
+      this.eraseCookie('nick');
       this.$store.commit("setLogin", false);
     }
   },
