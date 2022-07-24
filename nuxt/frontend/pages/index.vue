@@ -1,5 +1,12 @@
 <template>
-  <Tutorial :text="text"/>
+  <div id='app'>
+    <Tutorial :text="text"/>
+    <Login v-if="isLogin === false" />
+    <div v-else>
+      <p>로그인 상태입니다.</p>
+      <button @click="logout">logout</button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -10,6 +17,16 @@ export default {
   data() {
     return {
       text: 'hello default'
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.commit("setLogin", false);
+    }
+  },
+  computed: {
+    isLogin() {
+      return this.$store.state.isLogin
     }
   },
   async asyncData(context) {
