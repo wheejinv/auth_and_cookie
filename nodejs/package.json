@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "scripts": {
+    "cookie": "pm2 delete all; pm2 start cookie.js --watch; pm2 log"
+  },
+  "type": "module"
+}
