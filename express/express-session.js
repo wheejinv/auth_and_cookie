@@ -1,37 +1,28 @@
 import express from "express";
-import parseurl from "parseurl";
 import session from "express-session";
 
 const app = express();
 
 app.use(
+  // 세션은 서버가 재시작 되는 순간 사라지는 휘발성이다.
+  // 이를 보완하기 위해 redis 등을 사용하는건가봄.
   session({
-    secret: "keyboard cat",
+    secret: "as;ldkioasej121!",
     resave: false,
     saveUninitialized: true,
   }),
 );
 
-app.use(function (req, res, next) {
-  if (!req.session.views) {
-    req.session.views = {};
+app.get("/", function (req, res, next) {
+  console.log(req.session);
+
+  if (req.session.num === undefined) {
+    req.session.num = 1;
+  } else {
+    req.session.num += 1;
   }
 
-  // get the url pathname
-  const pathname = parseurl(req).pathname;
-
-  // count the views
-  req.session.views[pathname] = (req.session.views[pathname] || 0) + 1;
-
-  next();
-});
-
-app.get("/foo", function (req, res, next) {
-  res.send("you viewed this page " + req.session.views["/foo"] + " times");
-});
-
-app.get("/bar", function (req, res, next) {
-  res.send("you viewed this page " + req.session.views["/bar"] + " times");
+  res.send(`Views: ${req.session.num}`);
 });
 
 app.listen(3000);
