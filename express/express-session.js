@@ -1,5 +1,9 @@
 import express from "express";
 import session from "express-session";
+import FileStore from "session-file-store";
+
+const fileStore = FileStore(session);
+const fileStoreOptions = {};
 
 const app = express();
 
@@ -10,6 +14,7 @@ app.use(
     secret: "as;ldkioasej121!",
     resave: false,
     saveUninitialized: true,
+    store: new fileStore(fileStoreOptions),
   }),
 );
 

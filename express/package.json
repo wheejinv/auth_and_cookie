@@ -2,7 +2,8 @@
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "express": "^4.18.1",
-    "express-session": "^1.17.3"
+    "express-session": "^1.17.3",
+    "session-file-store": "^1.5.0"
   },
   "scripts": {
     "cookie": "pm2 delete all; pm2 start cookie.js --watch; pm2 log"
