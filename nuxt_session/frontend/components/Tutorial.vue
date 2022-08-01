@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-  color: $test-css;
+  color: var(--color1);
 
   .from-server {
     color: black;
